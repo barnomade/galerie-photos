@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,7 +18,7 @@ h1 {
 }
 
 .logo {
-  width: 150px;
+  width: 280px;
   margin: 20px;
 }
 
@@ -34,10 +33,44 @@ h1 {
   width: 100%;
   border-radius: 10px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .galerie img:hover {
   transform: scale(1.05);
+}
+
+/* --- Lightbox (agrandissement photo) --- */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.fermer {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
 }
 </style>
 
@@ -50,26 +83,44 @@ h1 {
 
 <div class="galerie">
 
-<img src="1.jpeg">
-<img src="2.jpeg">
-<img src="3.jpeg">
-<img src="4.jpeg">
-<img src="5.jpeg">
-<img src="6.jpeg">
-<img src="7.jpeg">
-<img src="8.jpeg">
-<img src="9.jpeg">
-<img src="10.jpeg">
-<img src="11.jpeg">
-<img src="12.jpeg">
-<img src="13.jpeg">
-<img src="14.jpeg">
-<img src="15.jpeg">
-<img src="16.jpeg">
-<img src="17.jpeg">
-<img src="18.jpeg">
+<img src="1.jpeg" onclick="ouvrirImage(this)">
+<img src="2.jpeg" onclick="ouvrirImage(this)">
+<img src="3.jpeg" onclick="ouvrirImage(this)">
+<img src="4.jpeg" onclick="ouvrirImage(this)">
+<img src="5.jpeg" onclick="ouvrirImage(this)">
+<img src="6.jpeg" onclick="ouvrirImage(this)">
+<img src="7.jpeg" onclick="ouvrirImage(this)">
+<img src="8.jpeg" onclick="ouvrirImage(this)">
+<img src="9.jpeg" onclick="ouvrirImage(this)">
+<img src="10.jpeg" onclick="ouvrirImage(this)">
+<img src="11.jpeg" onclick="ouvrirImage(this)">
+<img src="12.jpeg" onclick="ouvrirImage(this)">
+<img src="13.jpeg" onclick="ouvrirImage(this)">
+<img src="14.jpeg" onclick="ouvrirImage(this)">
+<img src="15.jpeg" onclick="ouvrirImage(this)">
+<img src="16.jpeg" onclick="ouvrirImage(this)">
+<img src="17.jpeg" onclick="ouvrirImage(this)">
+<img src="18.jpeg" onclick="ouvrirImage(this)">
 
 </div>
 
+<!-- Fenêtre agrandie -->
+<div class="lightbox" id="lightbox">
+  <span class="fermer" onclick="fermerImage()">&times;</span>
+  <img id="image-agrandie" src="">
+</div>
+
+<script>
+function ouvrirImage(element) {
+  document.getElementById("lightbox").classList.add("active");
+  document.getElementById("image-agrandie").src = element.src;
+}
+
+function fermerImage() {
+  document.getElementById("lightbox").classList.remove("active");
+}
+</script>
+
 </body>
 </html>
+
